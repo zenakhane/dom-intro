@@ -8,6 +8,7 @@ var textTotalAddBtn = document.querySelector(".addToBillBtn")
 var callsTotalElem = document.querySelector(".callTotalOne")
 var smsTotalElem = document.querySelector(".smsTotalOne")
 var totalCostElem = document.querySelector(".totalOne")
+var colorElement = document.querySelector(".color")
 
 
 // these variables are global and defined outside of the Add button event listener.
@@ -31,14 +32,15 @@ function textBillTotal(){
     if (totalCost >= 30 && totalCost < 50){
         // adding the danger class will make the text red
         totalCostElem.classList.add("warning");
+        colorElement.classList.add("warning");
     }
     else if (totalCost >= 50){
+        colorElement.classList.remove("warning");
         totalCostElem.classList.remove("warning");
         totalCostElem.classList.add("danger");
+        colorElement.classList.add("danger");
         
     }
-
-    
     //update the totals that is displayed on the screen.
     callsTotalElem.innerHTML = callsTotal.toFixed(2);
     smsTotalElem.innerHTML = smsTotal.toFixed(2);
