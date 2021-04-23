@@ -14,6 +14,10 @@ function calculateBtnClicked(){
     var billItems = billString.split(",");
     // a variable for the total phone bill.
     var billTotal = 0;
+            colorElement1.classList.remove("warning");
+            billTotalElement.classList.remove("warning");
+            colorElement1.classList.remove("danger");
+            billTotalElement.classList.remove("danger");
     //loop over all the bill items
     for (var i=0;i<billItems.length;i++){
         var billItem = billItems[i].trim();
@@ -24,28 +28,30 @@ function calculateBtnClicked(){
             billTotal += 0.75;
         }
 
-        if (billTotal < 20 ){
-            colorElement1.classList.remove("total" || "warning");
-            billTotalElement.classList.remove("warning");
-            colorElement1.classList.remove("total" || "danger");
-            billTotalElement.classList.remove("danger");
-            console.log(colorElement1)
-
-        }
         if (billTotal >= 20 && billTotal < 30){ 
             colorElement1.classList.add("warning");
             billTotalElement.classList.add("warning");
             console.log(colorElement1)
         }
         else if (billTotal >= 30){
-            billTotalElement.classList.remove("warning");
-            colorElement1.classList.remove("total" || "warning");
-
             billTotalElement.classList.add("danger");
             colorElement1.classList.add("danger");
+            billTotalElement.classList.remove("warning");
+            colorElement1.classList.remove("warning");
+
             console.log(colorElement1)
             
         }
+        else{
+            colorElement1.classList.remove("total");
+            billTotalElement.classList.remove("warning");
+            colorElement1.classList.remove("total");
+            billTotalElement.classList.remove("danger");
+            console.log(colorElement1)
+
+        }
+
+        
 
     }
     
