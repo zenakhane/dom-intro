@@ -16,9 +16,9 @@ var symbolColor = document.querySelector(".symbol")
 //  get a reference to the settings total
 var radioSettings = 0
 // create a variables that will keep track of all the settings
-var callsTotal = 0
-var smsTotal = 0
-var radioTotal = 0
+var settingsCallsTotal = 0
+var settingsSmsTotal = 0
+var settingsRadioTotal = 0
 // create a variables that will keep track of all three totals.
 var setCall = 0
 var setSms = 0
@@ -31,6 +31,7 @@ function billUpdate() {
     setWarning = parseFloat(warningSettings.value);
     setCritical = parseFloat(criticalSettings.value);
     // console.log(typeof setCall)
+    addClasses()
 }
 radioUpdateButton.addEventListener('click', billUpdate)
 
@@ -39,34 +40,46 @@ function billSetting() {
     var checkedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked");
     if (checkedRadioBtn) {
         var billItemType = checkedRadioBtn.value.trim()
-        if (radioTotal < setCritical) {
+        if (settingsRadioTotal < setCritical) {
             if (billItemType === "call") {
-                callsTotal += setCall;
-                radioTotal += setCall;
+                settingsCallsTotal += setCall;
+                settingsRadioTotal += setCall;
             } else if (billItemType === "sms") {
-                smsTotal += setSms;
-                radioTotal += setSms;
+                settingsSmsTotal += setSms;
+                settingsRadioTotal += setSms;
             }
         }
-        
+
 
     }
-    if (radioTotal >= setWarning &&  radioTotal < setCritical) {
-        SettingTotal.classList.add("warning");
-        symbolColor.classList.add("warning")
-    }  
-    if (radioTotal >= setCritical) {
-        console.log(setCritical)
+    callSettingTotal.innerHTML = settingsCallsTotal.toFixed(2);
+    smsSettingTotal.innerHTML = settingsSmsTotal.toFixed(2);
+    SettingTotal.innerHTML = settingsRadioTotal.toFixed(2);
+    addClasses()
+
+}
+
+function addClasses() {
+  
+    if (settingsRadioTotal >= setCritical) {
         // SettingTotal.classList.remove("warning");
         // symbolColor.classList.remove("warning");
 
+        SettingTotal.classList.remove("warning");
         SettingTotal.classList.add("danger");
-        symbolColor.classList.add("danger");
 
     }
-    callSettingTotal.innerHTML = callsTotal.toFixed(2);
-    smsSettingTotal.innerHTML = smsTotal.toFixed(2);
-    SettingTotal.innerHTML = radioTotal.toFixed(2);
+   else if (settingsRadioTotal >= setWarning && settingsRadioTotal < setCritical) {
+         SettingTotal.classList.remove("danger");
+         SettingTotal.classList.add("warning");
+    }
+    else {
+        SettingTotal.classList.remove("warning");
+        SettingTotal.classList.remove("danger");
+    }
 
 }
+
+
+
 radioBillButton.addEventListener('click', billSetting);

@@ -35,7 +35,7 @@ function radioButtonBill() {
         }
     }
     // update the correct total
-    //update the totals that is displayed on the screen.
+    //update the totalDs that is displayed on the screen.
     totalCallsElement.innerHTML = totalCalls.toFixed(2);
     totalSmsElement.innerHTML = totalSms.toFixed(2);
     totalOfRadio.innerHTML = costTotal.toFixed(2);
