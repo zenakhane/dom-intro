@@ -30,7 +30,7 @@ if (totalCost >= 30 && totalCost < 50){
 totalCostElem.classList.add("warning");
 colorElement.classList.add("warning");
 }
-else if (totalCost >= 50){
+   else if (totalCost >= 50){
 colorElement.classList.remove("warning");
 totalCostElem.classList.remove("warning");
 totalCostElem.classList.add("danger");
